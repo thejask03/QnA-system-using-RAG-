@@ -1,45 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
+# 🚀 Dynamic RAG QnA System
 
-    <div align="center">
-        <h1>🚀 Dynamic Multimodal RAG QnA System</h1>
-        <p><strong>A production-ready Retrieval-Augmented Generation (RAG) system utilizing LlamaIndex (for data ingestion and retrieval), local HuggingFace Embeddings, and Google Gemini.</strong></p> (for final text generation).
-        <p>
-            <img src="https://img.shields.io/badge/Python-3.9+-blue.svg" alt="Python Version">
-            <img src="https://img.shields.io/badge/LlamaIndex-0.10+-orange.svg" alt="LlamaIndex Version">
-            <img src="https://img.shields.io/badge/Framework-Streamlit-FF4B4B.svg" alt="Streamlit">
-            <img src="https://img.shields.io/badge/LLM-Gemini_2.5_Flash-green.svg" alt="Gemini">
-        </p>
-    </div>
+A production-ready Retrieval-Augmented Generation (RAG) system engineered using LlamaIndex, local HuggingFace Embeddings, and Google Gemini to converse dynamically with technical documents and phase diagrams.
 
-    <hr>
+---
 
-    <h2>📋 Overview</h2>
-    <p>
-        This repository features a robust, enterprise-grade <strong>Retrieval-Augmented Generation (RAG)</strong> architecture engineered to turn unstructured data chunks (PDFs, txt files) into a private, context-aware query engine. It wraps advanced data ingestion pipelines into an interactive, sleek <strong>Streamlit</strong> web UI dashboards.
-    </p>
-    <p>
-        Unlike naive RAG implementations, this project solves two massive real-world deployment challenges: 
-        <strong>API rate-limiting bottlenecks (429 errors)</strong> and <strong>cloud-sync filesystem locking (WinError 5 Access Denied)</strong>.
-    </p>
+## 📋 Overview
 
-    <h2>✨ Key Features</h2>
-    <ul>
-        <li>
-            <strong>🔄 Dynamic Context Ingestion:</strong> Features an on-the-fly data pipeline that actively sweeps stale caches, writes incoming web file buffers securely onto disk, and automatically triggers index rebuilding when a user drops a new file.
-        </li>
-        <li>
-            <strong>🛡️ 429 Quota-Exceeded Immunity:</strong> Uses a hybrid open-source stack. Document tokenization and vector calculations are executed entirely on your local machine CPU using <code>bge-small-en-v1.5</code> via HuggingFace. This results in <strong>0 network embedding calls</strong> and virtually unlimited free document parsing.
-        </li>
-        <li>
-            <strong>🧠 Advanced Reasoning Engine:</strong> Leverages the up-to-date <code>gemini-2.5-flash</code> API strictly as a final context-synthesizer, producing structured, hyper-accurate responses devoid of generic LLM hallucinations.
-        </li>
-        <li>
-            <strong>🪟 Windows &amp; OneDrive Protection:</strong> Implements defensive <code>os.chmod</code> and <code>stat.S_IWRITE</code> file permission sweeps to prevent crashes caused by background cloud sync engines (like Microsoft OneDrive) locking runtime database components.
-        </li>
-    </ul>
+This project is a highly robust, enterprise-grade **Retrieval-Augmented Generation (RAG)** system built to transform unstructured technical text and PDF manuals into a private, interactive knowledge base. It features an optimized hybrid architecture that eliminates API cost bottlenecks and insulates local operations against typical operating system file locks.
+
+Unlike naive RAG templates, this application is custom-engineered to solve two critical real-world deployment challenges:
+1. **API Rate-Limiting Bottlenecks (429 Errors):** Overridden by decoupling the vector embedding lifecycle from commercial cloud APIs.
+2. **Cloud-Sync Filesystem Locking (WinError 5 Access Denied):** Patched by implementing robust local file permission overrides that prevent crashes inside cloud-synced folders.
+
+---
+
+## ✨ Key Features
+
+* **🔄 Dynamic Context Ingestion:** Implements an on-the-fly data pipeline that clears old caches and re-indexes new files in real-time as users upload them via the web interface.
+* **🛡️ 429 Quota-Exceeded Immunity:** Runs an open-source, local embedding pipeline utilizing `bge-small-en-v1.5` via HuggingFace. Vector mapping executes entirely on the host CPU with **zero network API overhead**, allowing for free, unlimited document parsing.
+* **🧠 Advanced Reasoning Engine:** Integrates the up-to-date `gemini-2.5-flash` model solely as a final response synthesizer, ensuring hyper-accurate, perfectly formatted contextual answers devoid of typical LLM hallucinations.
